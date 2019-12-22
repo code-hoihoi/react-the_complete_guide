@@ -55,15 +55,10 @@ class App extends Component {
       padding: '8px'
     };
 
-    return (
-      <div className="App">
-        <h1>Hi! I am a React App.</h1>
-        <p>This is really working!</p>
-        <button style={myStyle} onClick={this.toggleNameHandler}>Switch Name</button>
-        
-        { 
-          this.state.showPerson ? 
-          <div>  
+    let persons = null
+    if (this.state.showPerson) {
+      persons = (
+        <div>  
             <Person 
               name={this.state.persons[0].name} 
               age={this.state.persons[0].age} />
@@ -75,8 +70,16 @@ class App extends Component {
               name={this.state.persons[2].name} 
               age={this.state.persons[2].age}
             clicked={this.nameChangeHandler} />
-          </div>  : null
-        }  
+        </div>
+      )
+    }
+
+    return (
+      <div className="App">
+        <h1>Hi! I am a React App.</h1>
+        <p>This is really working!</p>
+        <button style={myStyle} onClick={this.toggleNameHandler}>Switch Name</button>
+        {persons}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, "Does this work?"));
