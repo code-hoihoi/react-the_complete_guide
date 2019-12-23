@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import person from './Person/Person';
 
 class App extends Component {
   state = {
@@ -28,7 +27,10 @@ class App extends Component {
   }
 
   deleteNameHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // const persons = this.state.persons; // <- BAD PRACTICE!! DON"T DO THIS!!
+    // We should make a copy of state instead. :D
+    // const persons = this.state.persons.slice();  // <- One possible way to make a copy but obsolete
+    const persons = [...this.state.persons];  // <- Modern way to make a copy
     persons.splice(personIndex, 1)
     this.setState({
       persons: persons
