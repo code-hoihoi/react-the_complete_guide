@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import person from './Person/Person';
 
 class App extends Component {
   state = {
@@ -24,6 +25,14 @@ class App extends Component {
         ]
       }
     )
+  }
+
+  deleteNameHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1)
+    this.setState({
+      persons: persons
+    });
   }
 
   nameChangeHandler = (event) => {
@@ -59,8 +68,11 @@ class App extends Component {
     if (this.state.showPerson) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />
+          {this.state.persons.map((person, personIndex) => {
+            return <Person 
+              click={() => this.deleteNameHandler(personIndex)} 
+              name={person.name} 
+              age={person.age} />
           })}
           {/* <Person 
             name={this.state.persons[0].name} 
