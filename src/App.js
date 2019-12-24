@@ -37,16 +37,22 @@ class App extends Component {
     });
   }
 
-  nameChangeHandler = (event) => {
-    this.setState(
-      {
-        persons : [
-          {name: event.target.value, age: "28"},
-          {name: "Manu", age: "30"},
-          {name: "Stephanie", age: "27"}
-        ]
-      }
-    )
+  nameChangeHandler = (event, id) => {
+    // Find an index of person in which the event occurs
+    const personIndex = this.state.persons.findIndex((p) => {
+      return p.id === id;
+    });
+    // Make a copy of person and change the name according to the input
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    person.name = event.target.value;
+
+    // Make a copy of persons array and swap an element with person(the copy created above)
+    const newPersons = [...this.state.persons];
+    newPersons[personIndex] = person;
+
+    this.setState({ persons : newPersons })
   }
 
   toggleNameHandler = () => {
@@ -72,10 +78,11 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, personIndex) => {
             return <Person 
-              key={person.id}
-              click={() => this.deleteNameHandler(personIndex)} 
+              key={person.id} 
               name={person.name} 
-              age={person.age} />
+              age={person.age}
+              click={() => this.deleteNameHandler(personIndex)}
+              changed={(event) => this.nameChangeHandler(event, person.id)} />
           })}
           {/* <Person 
             name={this.state.persons[0].name} 
