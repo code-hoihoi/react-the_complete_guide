@@ -23,7 +23,7 @@ class App extends Component {
           {name: "Stephanie", age: "27"}
         ]
       }
-    )
+    );
   }
 
   deleteNameHandler = (personIndex) => {
