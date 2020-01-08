@@ -66,7 +66,8 @@ class App extends Component {
 
   render() {
     const myStyle = {
-      backgroundColor: 'White',
+      backgroundColor: 'Green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px'
@@ -84,30 +85,19 @@ class App extends Component {
               click={() => this.deleteNameHandler(personIndex)}
               changed={(event) => this.nameChangeHandler(event, person.id)} />
           })}
-          {/* <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age} />
-          <Person 
-            name={this.state.persons[1].name} 
-            age={this.state.persons[1].age} 
-            click={() => this.switchNameHandler("Hoihoi")}>My Hobbies: Racing</Person>
-          <Person 
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age}
-          clicked={this.nameChangeHandler} /> */}
         </div>
       )
+      myStyle.backgroundColor = 'red';
     }
 
     return (
       <div className="App">
         <h1>Hi! I am a React App.</h1>
         <p>This is really working!</p>
-        <button style={myStyle} onClick={this.toggleNameHandler}>Switch Name</button>
+        <button style={myStyle} onClick={this.toggleNameHandler}>Toggle Persons</button>
         {persons}
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, "Does this work?"));
   }
 }
 
