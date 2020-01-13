@@ -3,9 +3,13 @@ import Radium from 'radium';
 import './Person.css';
 
 const person = ( props ) => {
-    //return <p>I'm a Person! I am { Math.floor((Math.random() * 30)) } years old.</p>
+    const personStyle = {
+        '@media (min-width: 500px)': {
+            width: '450px'
+        }
+    };
     return(
-        <div className="Person">
+        <div className="Person" style={personStyle}>
             <p onClick={props.click}>I'm {props.name}! I am { Math.floor(props.age) } years old.</p>
             <p>{props.children}</p>
             <input type="text" onChange={props.changed} />
@@ -13,4 +17,4 @@ const person = ( props ) => {
     )
 }
 
-export default person;
+export default Radium(person);

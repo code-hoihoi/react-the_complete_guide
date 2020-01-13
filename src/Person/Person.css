@@ -6,3 +6,9 @@
     padding: 16px;
     text-align: center;
 }
+/* media query can be defined in css but we define in JSX as it allows dynamic styling */
+/* @media (min-width: 500px){
+    .Person{
+        width: 450px;
+    }
+} */
