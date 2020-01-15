@@ -4,17 +4,17 @@ import Person from './Person/Person';
 import './App.css';
 
 const StyledButton = styled.button`
-  background-color: Green;
+  background-color: ${props => props.altColor ? 'red' : 'green'};
   color: white;
   font: inherit;
   border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
   &:hover {
-    background-color: lightgreen;
+    background-color: ${props => props.altColor ? 'salmon' : 'lightgreen'};
     color: black;
   }
-`
+`;
 
 class App extends Component {
   state = {
@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   switchNameHandler = (newName) => {
-    //console.log("was clicked")
     this.setState(
       {
         persons : [
@@ -79,19 +78,6 @@ class App extends Component {
   }
 
   render() {
-    // const myStyle = {
-    //   backgroundColor: 'Green',
-    //   color: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover': {
-    //     backgroundColor: 'lightgreen',
-    //     color: 'black'
-    //   }
-    // };
-
     let persons = null
     if (this.state.showPerson) {
       persons = (
@@ -106,11 +92,6 @@ class App extends Component {
           })}
         </div>
       )
-      // myStyle.backgroundColor = 'red';
-      // myStyle[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
     }
 
     const classes = [];
@@ -125,7 +106,7 @@ class App extends Component {
       <div className="App">
         <h1>Hi! I am a React App.</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton onClick={this.toggleNameHandler}>Toggle Persons</StyledButton>
+        <StyledButton altColor={this.state.showPerson} onClick={this.toggleNameHandler}>Toggle Persons</StyledButton>
         {persons}
       </div>
     );
