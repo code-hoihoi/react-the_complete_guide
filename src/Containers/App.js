@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Person from './Person/Person';
+import Person from '../Components/Persons/Person/Person';
 import './App.css';
 
 const StyledButton = styled.button`
