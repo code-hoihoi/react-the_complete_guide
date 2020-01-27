@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 // import './Person.css';
 
 const StyledDiv = styled.div`
@@ -20,7 +21,7 @@ const person = ( props ) => {
         <StyledDiv>
             <p onClick={props.click}>I'm {props.name}! I am { Math.floor(props.age) } years old.</p>
             <p>{props.children}</p>
-            <input type="text" onChange={props.changed} />
+            <input type="text" onChange={props.change} />
         </StyledDiv>
     )
 }
