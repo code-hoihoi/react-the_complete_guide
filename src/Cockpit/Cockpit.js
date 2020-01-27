@@ -29,7 +29,9 @@ const cockpit = (props) => {
         <div>
             <h1>Hi! I am a React App.</h1>
             <p className={classes.join(' ')}>This is really working!</p>
-            <StyledButton altColor={props.showPerson} onClick={props.clicked}>Toggle Persons</StyledButton>
+            <StyledButton altColor={props.showPerson} onClick={props.clicked}>
+                Toggle Persons
+            </StyledButton>
             {props.persons}
         </div>
     )
