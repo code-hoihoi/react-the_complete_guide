@@ -3,6 +3,7 @@ import React from 'react';
 import Person from './Person/Person';
 
 const persons = (props) => {
+    console.log('[Persons.js] rendering...');
     return (
         <div>
             {props.persons.map((person, personIndex) => {

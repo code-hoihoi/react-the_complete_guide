@@ -5,7 +5,12 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
+   state = {
     persons: [
       {id: "00001", name: "Max", age: "28"},
       {id: "00002", name: "Manu", age: "30"},
@@ -13,6 +18,18 @@ class App extends Component {
     ],
     otherstate: "some other state value",
     showPerson: false
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedState', props, 'WARNED AS A LEGACY LIFECYCLE METHOD!');
+  }
+
+  componentWillMount(props) {
+    console.log('[App.js] componentWillMount', 'WARNED AS A LEGACY LIFECYCLE METHOD!');
+  }
+
+  componentDidMount(props) {
+    console.log('[App.js] componentDidMount');
   }
 
   switchNameHandler = (newName) => {
@@ -66,6 +83,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] rendering...');
     let persons = null;
     if (this.state.showPerson) {
       persons = (
