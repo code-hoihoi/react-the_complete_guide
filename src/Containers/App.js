@@ -20,14 +20,6 @@ class App extends Component {
     showPerson: false
   }
 
-  static getDerivedStateFromProps(props, state) {
-    console.log('[App.js] getDerivedState', props, 'WARNED AS A LEGACY LIFECYCLE METHOD!');
-  }
-
-  componentWillMount(props) {
-    console.log('[App.js] componentWillMount', 'WARNED AS A LEGACY LIFECYCLE METHOD!');
-  }
-
   componentDidMount(props) {
     console.log('[App.js] componentDidMount');
   }
