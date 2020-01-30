@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -14,27 +14,31 @@ const StyledButton = styled.button`
   }
 `;
 
-const cockpit = (props) => {
-    const classes = [];
-    let len = props.personsLen;
+const Cockpit = (props) => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+  });
 
-    if(len <= 2){
-      classes.push('red');
-    }
-    if(len <= 1){
-      classes.push('bold');
-    }
-    
-    return (
-        <div>
-            <h1>{props.title}</h1>
-            <p className={classes.join(' ')}>This is really working!</p>
-            <StyledButton altColor={props.showPerson} onClick={props.clicked}>
-                Toggle Persons
-            </StyledButton>
-            {props.persons}
-        </div>
-    )
+  const classes = [];
+  let len = props.personsLen;
+
+  if(len <= 2){
+    classes.push('red');
+  }
+  if(len <= 1){
+    classes.push('bold');
+  }
+  
+  return (
+      <div>
+          <h1>{props.title}</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <StyledButton altColor={props.showPerson} onClick={props.clicked}>
+              Toggle Persons
+          </StyledButton>
+          {props.persons}
+      </div>
+  )
 }
 
-export default cockpit;
+export default Cockpit;
