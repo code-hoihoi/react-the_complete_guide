@@ -15,9 +15,19 @@ const StyledButton = styled.button`
 `;
 
 const Cockpit = (props) => {
+  // using useEffect() with handler method(setTimeout).
+  // This is kind of a mock for sending http request and recieving data in response.
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect', [props.persons]);
+    setTimeout(() => {alert('Data saved to cloud!')}, 2000);
+  }, [props.persons]);
+
+  // using useEffect() with handler method(setTimeout).
+  // Only executed once (after first rendering) as empty list is given.
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-  });
+    setTimeout(() => {alert('This useEffect is executed only first time!')}, 1000);
+  }, []);
 
   const classes = [];
   let len = props.personsLen;
@@ -36,7 +46,6 @@ const Cockpit = (props) => {
           <StyledButton altColor={props.showPerson} onClick={props.clicked}>
               Toggle Persons
           </StyledButton>
-          {props.persons}
       </div>
   )
 }
