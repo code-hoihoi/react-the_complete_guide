@@ -38,18 +38,6 @@ class App extends Component {
     console.log('[App.js] componentDidUpdate');
   }
 
-  switchNameHandler = (newName) => {
-    this.setState(
-      {
-        persons : [
-          {name: newName, age: "28"},
-          {name: "Manu", age: "30"},
-          {name: "Stephanie", age: "27"}
-        ]
-      }
-    );
-  }
-
   deleteNameHandler = (personIndex) => {
     // const persons = this.state.persons; // <- BAD PRACTICE!! DON"T DO THIS!!
     // We should make a copy of state instead. :D
