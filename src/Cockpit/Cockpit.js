@@ -20,6 +20,9 @@ const Cockpit = (props) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect', [props.persons]);
     setTimeout(() => {alert('Data saved to cloud!')}, 2000);
+    return() => {
+      console.log('[Cockpit.js] this component is changed');
+    }
   }, [props.persons]);
 
   // using useEffect() with handler method(setTimeout).
@@ -27,6 +30,9 @@ const Cockpit = (props) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     setTimeout(() => {alert('This useEffect is executed only first time!')}, 1000);
+    return() => {
+      console.log('[Cockpit.js] cleanup is done');
+    }
   }, []);
 
   const classes = [];
