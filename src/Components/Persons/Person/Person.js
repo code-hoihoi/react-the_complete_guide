@@ -6,7 +6,7 @@ import styled from 'styled-components';
 class Person extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Person.js] shouldComponentUpdate', nextProps, nextState);
-        return true;  // need either true or false as this method deceides to update the DOM.
+        return true;  // need to return either true or false as this method deceides to update the DOM.
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {

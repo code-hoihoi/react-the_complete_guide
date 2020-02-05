@@ -32,7 +32,7 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[App.js] shouldComponentUpdate');
-    return true;
+    return true; // need to return either true or false as this method deceides to update the DOM.
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

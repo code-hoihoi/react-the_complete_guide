@@ -5,7 +5,14 @@ import Person from './Person/Person';
 class Persons extends Component{
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate', nextProps, nextState);
-        return true;  // need either true or false as this method deceides to update the DOM.
+        // With this change, clicking "remove cockpit" button while displaying Persons list should not 
+        // print the log of Persons.js rendering and Person.js rendering. -> Perfomance Optimization
+        if(nextProps.persons !== this.props.persons) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
