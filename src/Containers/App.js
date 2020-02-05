@@ -105,14 +105,14 @@ class App extends Component {
     return (
       <div className="App">
         <button onClick={this.removeCockpit}>remove cockpit</button>
-        {this.state.showCockpit ? <div>
+        {this.state.showCockpit ? 
         <Cockpit 
           title={this.props.appTitle}
           persons={this.state.persons} 
           personsLen={this.state.persons.length} 
           showPerson={this.state.showPerson} 
-          clicked={this.toggleNameHandler} />
-        {persons} </div>: null}
+          clicked={this.toggleNameHandler} /> : null}
+        {persons}
       </div>
     );
   }

@@ -29,8 +29,9 @@ const Cockpit = (props) => {
   // Only executed once (after first rendering) as empty list is given.
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-    setTimeout(() => {alert('This useEffect is executed only first time!')}, 1000);
+    const timer = setTimeout(() => {alert('This useEffect is executed only first time!')}, 1000);
     return() => {
+      clearTimeout(timer);
       console.log('[Cockpit.js] cleanup is done');
     }
   }, []);
