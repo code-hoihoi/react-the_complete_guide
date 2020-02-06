@@ -1,19 +1,26 @@
-import React, {Component} from 'react';
+// PureComponent fires shouldComponentUpdate if any props given to this components changed
+import React, { PureComponent } from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends Component{
+class Persons extends PureComponent{
+
+    /* We no longer need this function as we extend PureComponent, which does exactly the same in shorthand
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate', nextProps, nextState);
-        // With this change, clicking "remove cockpit" button while displaying Persons list should not 
+        // With this if-else, clicking "remove cockpit" button while displaying Persons list should not 
         // print the log of Persons.js rendering and Person.js rendering. -> Perfomance Optimization
-        if(nextProps.persons !== this.props.persons) {
+        if(
+            nextProps.persons !== this.props.persons ||
+            nextProps.persons !== this.props.clicked ||
+            nextProps.persons !== this.props.changed
+        ) {
             return true;
         }
         else {
             return false;
         }
-    }
+    }*/
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate', prevProps, prevState);
