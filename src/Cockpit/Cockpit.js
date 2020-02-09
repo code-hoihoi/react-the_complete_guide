@@ -46,13 +46,13 @@ const Cockpit = (props) => {
   }
   
   return (
-      <div>
-          <h1>{props.title}</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <StyledButton altColor={props.showPerson} onClick={props.clicked}>
-              Toggle Persons
-          </StyledButton>
-      </div>
+    <React.Fragment>
+      <h1>{props.title}</h1>
+      <p className={classes.join(' ')}>This is really working!</p>
+      <StyledButton altColor={props.showPerson} onClick={props.clicked}>
+          Toggle Persons
+      </StyledButton>
+    </React.Fragment>
   )
 }
 

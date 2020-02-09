@@ -35,7 +35,7 @@ class Persons extends PureComponent{
     render() {
         console.log('[Persons.js] rendering...');
         return (
-            <div>
+            <React.Fragment>
                 {this.props.persons.map((person, personIndex) => {
                     return <Person 
                         key={person.id} 
@@ -45,7 +45,7 @@ class Persons extends PureComponent{
                         change={(event) => this.props.changed(event, person.id)} 
                     />
                 })}
-            </div>
+            </React.Fragment>
         )
     }
 }
