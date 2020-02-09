@@ -14,6 +14,14 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledH1 = styled.h1`
+  font-weight: bold;
+`
+
+const StyledDiv = styled.div`
+  text-align: center;
+`
+
 const Cockpit = (props) => {
   // using useEffect() with handler method(setTimeout).
   // This is kind of a mock for sending http request and recieving data in response.
@@ -46,13 +54,15 @@ const Cockpit = (props) => {
   }
   
   return (
-    <React.Fragment>
-      <h1>{props.title}</h1>
+    <StyledDiv>
+      <StyledH1>
+        {props.title}
+      </StyledH1>
       <p className={classes.join(' ')}>This is really working!</p>
       <StyledButton altColor={props.showPerson} onClick={props.clicked}>
           Toggle Persons
       </StyledButton>
-    </React.Fragment>
+    </StyledDiv>
   )
 }
 

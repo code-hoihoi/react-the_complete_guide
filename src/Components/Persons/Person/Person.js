@@ -21,16 +21,16 @@ class Person extends Component {
 
     render() {
         const StyledDiv = styled.div`
-        width: 60%;
-        margin: auto;
-        border: 1px solid #ccc;
-        box-shadow: 0 3px 20px rgb(3, 111, 231);
-        padding: 16px;
-        text-align: center;
+            width: 60%;
+            margin: auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 3px 20px rgb(3, 111, 231);
+            padding: 16px;
+            text-align: center;
 
-        @media (min-width: 500px){
-            width: 450px;
-        }
+            @media (min-width: 500px){
+                width: 450px;
+            }
         `;
 
         console.log('[Person.js] rendering...');

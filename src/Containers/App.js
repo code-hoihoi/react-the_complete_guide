@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import './App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
 
@@ -91,6 +91,10 @@ class App extends Component {
 
   render() {
     console.log('[App.js] rendering...');
+    
+    const StyledParagraph = styled.p`
+      text-align:center;
+    `
     let persons = null;
     if (this.state.showPerson) {
       persons = (
@@ -103,17 +107,21 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <button onClick={this.removeCockpit}>remove cockpit</button>
+      <React.Fragment>
+        <StyledParagraph> 
+          <button onClick={this.removeCockpit}>remove cockpit</button>
+        </StyledParagraph>
         {this.state.showCockpit ? 
-        <Cockpit 
-          title={this.props.appTitle}
-          persons={this.state.persons} 
-          personsLen={this.state.persons.length} 
-          showPerson={this.state.showPerson} 
-          clicked={this.toggleNameHandler} /> : null}
+          <Cockpit 
+            title={this.props.appTitle} 
+            persons={this.state.persons} 
+            personsLen={this.state.persons.length} 
+            showPerson={this.state.showPerson} 
+            clicked={this.toggleNameHandler} 
+          /> : null
+        }
         {persons}
-      </div>
+      </React.Fragment>
     );
   }
 }
