@@ -10,7 +10,7 @@ class App extends Component {
     console.log('[App.js] constructor');
   }
 
-   state = {
+  state = {
     persons: [
       {id: "00001", name: "Max", age: "28"},
       {id: "00002", name: "Manu", age: "30"},
@@ -18,7 +18,8 @@ class App extends Component {
     ],
     otherstate: "some other state value",
     showPerson: false,
-    showCockpit: true
+    showCockpit: true,
+    nameChangeCounter: 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -69,7 +70,23 @@ class App extends Component {
     const newPersons = [...this.state.persons];
     newPersons[personIndex] = person;
 
-    this.setState({ persons : newPersons })
+    // This way does not guarantee the React updates the state immediately.
+    // Therefore, this.state.nameChangeCounter may no refer to previous state's value.
+    // (It can be the second or third previous value of nameChangeCounter -> causes unexpected result)
+    /*
+    this.setState({ 
+        persons : newPersons,
+        nameChangeCounter: this.state.nameChangeCounter + 1
+      }
+    )
+    */
+    // The better way to update the state that guarantees nameChangeCounter is actually the previous state's one
+    this.setState((previousState, props) => { 
+      return {
+        persons : newPersons,
+        nameChangeCounter: previousState.nameChangeCounter + 1
+      }
+    })
   }
 
   toggleNameHandler = () => {
