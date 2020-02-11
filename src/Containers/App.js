@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
 
+const StyledParagraph = styled.p`
+  text-align:center;
+`
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -108,10 +112,7 @@ class App extends Component {
 
   render() {
     console.log('[App.js] rendering...');
-    
-    const StyledParagraph = styled.p`
-      text-align:center;
-    `
+
     let persons = null;
     if (this.state.showPerson) {
       persons = (

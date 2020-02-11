@@ -5,8 +5,8 @@ import Person from './Person/Person';
 
 class Persons extends PureComponent{
 
-    /* We no longer need this function as we extend PureComponent, which does exactly the same in shorthand
-    shouldComponentUpdate(nextProps, nextState) {
+  /* We no longer need this function as we extend PureComponent, which does exactly the same in shorthand
+  shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate', nextProps, nextState);
         // With this if-else, clicking "remove cockpit" button while displaying Persons list should not 
         // print the log of Persons.js rendering and Person.js rendering. -> Perfomance Optimization
