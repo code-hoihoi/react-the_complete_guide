@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -40,6 +41,16 @@ class Person extends Component {
       </StyledDiv>
     )
   }
+}
+
+// Demo for how PropTypes work. Run the app and check the console log.
+// The entire code should give warning that age should be a number instead of string
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  change: PropTypes.func,
+  children: PropTypes.node
 }
 
 export default Person;
