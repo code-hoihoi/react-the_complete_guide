@@ -68,5 +68,5 @@ const Cockpit = (props) => {
 
 // Wrap React.memo() with the component.
 // This is used for performance optimization to avoid unnecessary re-rendering.
-// In short, it will not update Cockpit unless props given to Cockpit is changed(different).
+// In short, this allows us not to update Cockpit unless props given to Cockpit is changed(different).
 export default React.memo(Cockpit);

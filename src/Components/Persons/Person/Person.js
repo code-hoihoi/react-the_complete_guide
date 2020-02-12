@@ -16,6 +16,15 @@ const StyledDiv = styled.div`
 `;
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+    
+  componentDidMount() {
+    this.inputElementRef.current.focus();
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Person.js] shouldComponentUpdate', nextProps, nextState);
     return true;  // need to return either true or false as this method deceides to update the DOM.
@@ -36,8 +45,13 @@ class Person extends Component {
     return(
       <StyledDiv>
         <p onClick={this.props.click}>I'm {this.props.name}! I am { Math.floor(this.props.age) } years old.</p>
-        <p>{this.props.children}</p>
-        <input type="text" onChange={this.props.change} value={this.props.name}/>
+        <p key="i2">{this.props.children}</p>
+        <input 
+          type="text" 
+          key="i3"
+          ref={this.inputElementRef}
+          onChange={this.props.change} 
+          value={this.props.name}/>
       </StyledDiv>
     )
   }
