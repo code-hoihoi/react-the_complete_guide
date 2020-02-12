@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -23,18 +23,23 @@ const StyledDiv = styled.div`
 `
 
 const Cockpit = (props) => {
+  // const toggleStyledBtnRef = React.createRef(); // this way not supported in React Hooks
+  const toggleStyledBtnRef = useRef(null);
+
   // using useEffect() with handler method(setTimeout).
   // This is kind of a mock for sending http request and recieving data in response.
   useEffect(() => {
     console.log('[Cockpit.js] useEffect', [props.persons]);
     // setTimeout(() => {alert('Data saved to cloud!')}, 2000);
+    toggleStyledBtnRef.current.click();
     return() => {
       console.log('[Cockpit.js] Cockpit changed');
     }
   }, [props.persons]);
 
   // using useEffect() with handler method(setTimeout).
-  // Only executed once (after first rendering) as empty list is given.
+  // The second parameter(empty list) means this useEffect() executes just once.
+  // Important: useEffect() is executed after rendering, so atm all variable assignments should be done.
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // const timer = setTimeout(() => {alert('This useEffect is executed only first time!')}, 1000);
@@ -59,7 +64,7 @@ const Cockpit = (props) => {
         {props.title}
       </StyledH1>
       <p className={classes.join(' ')}>This is really working!</p>
-      <StyledButton altColor={props.showPerson} onClick={props.clicked}>
+      <StyledButton ref={toggleStyledBtnRef} altColor={props.showPerson} onClick={props.clicked}>
           Toggle Persons
       </StyledButton>
     </StyledDiv>
