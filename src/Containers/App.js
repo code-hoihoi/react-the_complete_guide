@@ -20,10 +20,10 @@ class App extends Component {
       {id: "00002", name: "Manu", age: 30},
       {id: "00003", name: "Stephanie", age: 26}
     ],
-    otherstate: "some other state value",
     showPerson: false,
     showCockpit: true,
-    nameChangeCounter: 0
+    nameChangeCounter: 0,
+    loggedIn: false
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -87,7 +87,7 @@ class App extends Component {
     // The better way to update the state that guarantees nameChangeCounter is actually the previous state's one
     this.setState((previousState, props) => { 
       return {
-        persons : newPersons,
+        persons: newPersons,
         nameChangeCounter: previousState.nameChangeCounter + 1
       }
     })
@@ -95,19 +95,15 @@ class App extends Component {
 
   toggleNameHandler = () => {
     const doesShow = this.state.showPerson;
-    this.setState(
-      {
-        showPerson: !doesShow
-      }
-    )
+    this.setState({ showPerson: !doesShow })
   }
 
   removeCockpit = () => {
-    this.setState(
-      {
-        showCockpit: false
-      }
-    )
+    this.setState({ showCockpit: false })
+  }
+
+  loginHandler = () => {
+    this.setState({ loggedIn: true });
   }
 
   render() {
@@ -120,6 +116,7 @@ class App extends Component {
           persons={this.state.persons}
           clicked={this.deleteNameHandler}
           changed={this.nameChangeHandler}
+          isAuthenticated={this.state.loggedIn} 
         />
       )
     }
@@ -136,6 +133,8 @@ class App extends Component {
             personsLen={this.state.persons.length} 
             showPerson={this.state.showPerson} 
             clicked={this.toggleNameHandler} 
+            login={this.loginHandler}
+            isAuthenticated={this.state.loggedIn} 
           /> : null
         }
         {persons}

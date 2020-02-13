@@ -65,7 +65,10 @@ const Cockpit = (props) => {
       </StyledH1>
       <p className={classes.join(' ')}>This is really working!</p>
       <StyledButton ref={toggleStyledBtnRef} altColor={props.showPerson} onClick={props.clicked}>
-          Toggle Persons
+        Toggle Persons
+      </StyledButton>
+      <StyledButton onClick={props.login} isAuthenticated={props.isAuthenticated}>
+        Log In
       </StyledButton>
     </StyledDiv>
   )
