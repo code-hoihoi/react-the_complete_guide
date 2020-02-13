@@ -27,27 +27,28 @@ const Cockpit = (props) => {
   const toggleStyledBtnRef = useRef(null);
 
   // using useEffect() with handler method(setTimeout).
-  // This is kind of a mock for sending http request and recieving data in response.
-  useEffect(() => {
-    console.log('[Cockpit.js] useEffect', [props.persons]);
-    // setTimeout(() => {alert('Data saved to cloud!')}, 2000);
-    toggleStyledBtnRef.current.click();
-    return() => {
-      console.log('[Cockpit.js] Cockpit changed');
-    }
-  }, [props.persons]);
-
-  // using useEffect() with handler method(setTimeout).
   // The second parameter(empty list) means this useEffect() executes just once.
   // Important: useEffect() is executed after rendering, so atm all variable assignments should be done.
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
+    toggleStyledBtnRef.current.click();
     // const timer = setTimeout(() => {alert('This useEffect is executed only first time!')}, 1000);
     return() => {
       // clearTimeout(timer);
       console.log('[Cockpit.js] cleanup is done');
     }
   }, []);
+
+  // using useEffect() with handler method(setTimeout).
+  // This is kind of a mock for sending http request and recieving data in response.
+  // This useEffect() is executed when some change occurs at the Persons component
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect', [props.persons]);
+    // setTimeout(() => {alert('Data saved to cloud!')}, 2000);
+    return() => {
+      console.log('[Cockpit.js] Cockpit changed');
+    }
+  }, [props.persons]);
 
   const classes = [];
 
