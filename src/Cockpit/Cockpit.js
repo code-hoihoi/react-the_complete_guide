@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import AuthContext from '../Context/auth-context';
 
 const StyledButton = styled.button`
   background-color: ${props => props.altColor ? 'red' : 'green'};
@@ -68,9 +69,13 @@ const Cockpit = (props) => {
       <StyledButton ref={toggleStyledBtnRef} altColor={props.showPerson} onClick={props.clicked}>
         Toggle Persons
       </StyledButton>
-      <StyledButton onClick={props.login} isAuthenticated={props.isAuthenticated}>
-        Log In
-      </StyledButton>
+      <AuthContext.Consumer>
+        {(context) =>
+          <StyledButton onClick={props.login} isAuthenticated={context.isAuthenticated}>
+            Log In
+          </StyledButton>
+        }
+      </AuthContext.Consumer>
     </StyledDiv>
   )
 }

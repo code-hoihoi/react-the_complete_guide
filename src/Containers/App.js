@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import AuthContext from '../Context/auth-context';
 
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
@@ -126,18 +127,25 @@ class App extends Component {
         <StyledParagraph> 
           <button onClick={this.removeCockpit}>remove cockpit</button>
         </StyledParagraph>
-        {this.state.showCockpit ? 
-          <Cockpit 
-            title={this.props.appTitle} 
-            persons={this.state.persons} 
-            personsLen={this.state.persons.length} 
-            showPerson={this.state.showPerson} 
-            clicked={this.toggleNameHandler} 
-            login={this.loginHandler}
-            isAuthenticated={this.state.loggedIn} 
-          /> : null
-        }
-        {persons}
+        {/* AuthoContext value attribute takes JSON object, so two pair of {} is needed */}
+        <AuthContext.Provider value={
+          {
+            authenticated: this.state.loggedIn,
+            login: this.loginHandler
+          }
+        }>
+          {this.state.showCockpit ? 
+            <Cockpit 
+              title={this.props.appTitle} 
+              persons={this.state.persons} 
+              personsLen={this.state.persons.length} 
+              showPerson={this.state.showPerson} 
+              clicked={this.toggleNameHandler} 
+              login={this.loginHandler}
+            /> : null
+          }
+          {persons}
+        </AuthContext.Provider>
       </React.Fragment>
     );
   }

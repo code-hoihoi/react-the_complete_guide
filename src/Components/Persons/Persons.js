@@ -42,8 +42,7 @@ class Persons extends PureComponent{
             name={person.name} 
             age={person.age}
             click={() => this.props.clicked(personIndex)}
-            change={(event) => this.props.changed(event, person.id)} 
-            isAuthenticated={this.props.isAuthenticated}
+            change={(event) => this.props.changed(event, person.id)}
           />
         })}
       </React.Fragment>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import AuthContext from '../../../Context/auth-context';
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -44,7 +45,9 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
     return(
       <StyledDiv>
-        {this.props.isAuthenticated ? <p>Authenticated!</p> : <p>Please Login</p>}
+        <AuthContext.Consumer>
+          {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please Login</p>}
+        </AuthContext.Consumer>
         <p onClick={this.props.click}>I'm {this.props.name}! I am { Math.floor(this.props.age) } years old.</p>
         <p key="i2">{this.props.children}</p>
         <input 
