@@ -141,7 +141,6 @@ class App extends Component {
               personsLen={this.state.persons.length} 
               showPerson={this.state.showPerson} 
               clicked={this.toggleNameHandler} 
-              login={this.loginHandler}
             /> : null
           }
           {persons}

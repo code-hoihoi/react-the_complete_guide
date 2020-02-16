@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../Context/auth-context';
 
@@ -51,6 +51,7 @@ const Cockpit = (props) => {
     }
   }, [props.persons]);
 
+  const context = useContext(AuthContext)
   const classes = [];
 
   if(props.personsLen <= 2){
@@ -69,13 +70,9 @@ const Cockpit = (props) => {
       <StyledButton ref={toggleStyledBtnRef} altColor={props.showPerson} onClick={props.clicked}>
         Toggle Persons
       </StyledButton>
-      <AuthContext.Consumer>
-        {(context) =>
-          <StyledButton onClick={props.login} isAuthenticated={context.isAuthenticated}>
-            Log In
-          </StyledButton>
-        }
-      </AuthContext.Consumer>
+      <StyledButton onClick={context.login} isAuthenticated={context.authenticated}>
+        Log In
+      </StyledButton>
     </StyledDiv>
   )
 }

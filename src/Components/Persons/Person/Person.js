@@ -21,8 +21,12 @@ class Person extends Component {
     super(props);
     this.inputElementRef = React.createRef();
   }
+
+  // Note: contextType is a keyword, so it has to be defined as below.
+  static contextType = AuthContext;
     
   componentDidMount() {
+    console.log('[Person.js] componentDidMount]', this.context.authenticated)
     this.inputElementRef.current.focus();
   }
 
@@ -45,9 +49,7 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
     return(
       <StyledDiv>
-        <AuthContext.Consumer>
-          {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please Login</p>}
-        </AuthContext.Consumer>
+        {this.context.authenticated ? <p>Authenticated!</p> : <p>Please Login</p> /* this.context is a keyword. */}
         <p onClick={this.props.click}>I'm {this.props.name}! I am { Math.floor(this.props.age) } years old.</p>
         <p key="i2">{this.props.children}</p>
         <input 
