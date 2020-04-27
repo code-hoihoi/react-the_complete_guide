@@ -12,14 +12,18 @@ class Blog extends Component {
     componentDidMount () {
         axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(response => {
-                  this.setState({data: response.data});
+                  const partial_data = response.data.slice(0, 4).map((datum) => {
+                      return {...datum, 'author': 'Max'}; // DO NOT Forget the Spread Operator!
+                  });
+
+                  this.setState({data: partial_data});
                   // console.log('[componentDidMount]', response);
             });
     }
 
     render () {
         const posts = this.state.data.map((datum) => {
-            return <Post key={datum.id} title={datum.title}/>
+            return <Post key={datum.id} title={datum.title} author={datum.author}/>
         });
         return (
             <div>
