@@ -7,7 +7,10 @@ import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
 
 class Blog extends Component {
-    state = {data: []};
+    state = {
+        data: [],
+        id: null
+    };
 
     componentDidMount () {
         axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -16,22 +19,37 @@ class Blog extends Component {
                       return {...datum, 'author': 'Max'}; // DO NOT Forget the Spread Operator!
                   });
 
-                  this.setState({data: partial_data});
+                  this.setState({
+                    data: partial_data
+                  });
                   // console.log('[componentDidMount]', response);
             });
     }
 
+    selectedIdHandler = (selectedId) => {
+        this.setState({
+            id: selectedId
+        });
+    }
+
     render () {
         const posts = this.state.data.map((datum) => {
-            return <Post key={datum.id} title={datum.title} author={datum.author}/>
+            return (
+                <Post 
+                    key={datum.id} 
+                    title={datum.title} 
+                    author={datum.author} 
+                    clicked={() => this.selectedIdHandler(datum.id)} />
+            );
         });
+
         return (
             <div>
                 <section className="Posts">
                     {posts}
                 </section>
                 <section>
-                    <FullPost />
+                    <FullPost id={this.state.id}/>
                 </section>
                 <section>
                     <NewPost />
