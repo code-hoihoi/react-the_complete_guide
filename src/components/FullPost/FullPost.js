@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './FullPost.css';
-import Axios from 'axios';
 
 class FullPost extends Component {
     state = {
@@ -10,7 +10,7 @@ class FullPost extends Component {
 
     componentDidUpdate () {
         if ((this.props.id && !this.state.loadedPost) || (this.props.id && (this.props.id !== this.state.loadedPost.id))) {
-            Axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+            axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
             .then(response => {
                 this.setState({
                     loadedPost: response.data
@@ -21,9 +21,9 @@ class FullPost extends Component {
 
 
     render () {
-        let post = <p>Please select a Post!</p>;
+        let post = <p className="PostDefaultMessage">Please select a Post!</p>;
         if (this.props.id) {
-            post =  <p>Now Loading ...</p>;
+            post =  <p className="PostDefaultMessage">Now Loading ...</p>;
         }
 
         if (this.props.id && this.state.loadedPost) {
