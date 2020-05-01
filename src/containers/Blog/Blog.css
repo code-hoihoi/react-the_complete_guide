@@ -5,3 +5,10 @@
     width: 80%;
     margin: auto;
 }
+
+.ErrorMessage {
+  text-align: center;
+  color: red;
+  font: bold;
+  font-size: 20px;
+}

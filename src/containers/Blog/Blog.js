@@ -9,7 +9,8 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         data: [],
-        id: null
+        id: null,
+        hasError: false
     };
 
     componentDidMount () {
@@ -19,10 +20,15 @@ class Blog extends Component {
                       return {...datum, 'author': 'Max'}; // DO NOT Forget the Spread Operator!
                   });
 
+                  // console.log('[componentDidMount]', response);
                   this.setState({
                     data: partial_data
                   });
-                  // console.log('[componentDidMount]', response);
+            })
+            .catch(error => {
+                this.setState({
+                    hasError: true
+                });
             });
     }
 
@@ -30,6 +36,12 @@ class Blog extends Component {
         this.setState({
             id: selectedId
         });
+    }
+
+    resetIdHandler = (selectedId) => {
+      this.setState({
+          id: null
+      });
     }
 
     render () {
@@ -43,13 +55,17 @@ class Blog extends Component {
             );
         });
 
+        if (this.state.hasError) {
+            return <p className={"ErrorMessage"}>Something Went Wrong with the GET Request!!</p>;
+        }
+
         return (
             <div>
                 <section className="Posts">
                     {posts}
                 </section>
                 <section>
-                    <FullPost id={this.state.id}/>
+                    <FullPost id={this.state.id} deleted={this.resetIdHandler}/>
                 </section>
                 <section>
                     <NewPost />

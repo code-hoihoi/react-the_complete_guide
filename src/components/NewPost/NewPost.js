@@ -7,7 +7,8 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Max',
+        hasError: false
     }
 
     postDataHandler () {
@@ -17,13 +18,21 @@ class NewPost extends Component {
             author: this.state.author
         };
 
-        axios.post('https://jsonplaceholder.typicode.com/posts', postData)
+        axios.post('https://jsonplaceholder.typicode.com/postssss', postData)
           .then(response => {
               console.log(response);
+          })
+          .catch(error => {
+              this.setState({
+                  hasError: true
+              });
           });
     }
 
     render () {
+        if (this.state.hasError) {
+            return <p className={"ErrorMessage"}>Something Went Wrong with the POST Request!!</p>;
+        }
         return (
             <div className="NewPost">
                 <h1>Add a Post</h1>
